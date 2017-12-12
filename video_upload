@@ -1,0 +1,124 @@
+<html>
+    <head>
+    <title>Video</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+        <style>
+            body{
+                
+                background:#16a085;
+                }
+        
+        </style>
+	
+        
+    </head>
+    <body>
+        
+        
+        <!--add nav-->
+     <nav class="navbar navbar-default" role="navigation">
+	   <div class="container-fluid">
+		<!-- add header -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="index.php">MyWeB</a>
+		</div>
+		<!-- menu items -->
+		<div class="collapse navbar-collapse" id="navbar1">
+			<ul class="nav navbar-nav navbar-right">
+                <li class="active"><a href="logout.php">Log Out</a></li>
+                <li class="active"><a href="options.php">Option</a></li>
+            
+			</ul>
+		</div>
+	</div>
+</nav>
+        
+        
+        
+<form method="post" enctype="multipart/form-data">
+
+<table  border="1" align="center">
+
+<tr>
+
+<td>Upload  Video</td></tr>
+
+<tr><td><input type="file" name="fileToUpload"/></td></tr>
+
+<tr><td>
+
+<input type="submit" value="Uplaod Video" name="upd"/>
+
+<input type="submit" value="Display Video" name="disp"/>
+
+</td></tr>
+
+</table>
+
+</form>	
+</body>
+</html>
+    
+<?php
+
+error_reporting(1);
+
+$con=mysqli_connect("localhost","root","");
+
+mysqli_select_db("mydb",$con);
+
+extract($_POST);
+
+$target_dir = "test_upload/";
+
+$target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+
+if($upd)
+{
+$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+
+if($imageFileType != "mp4" && $imageFileType != "avi" && $imageFileType != "mov" && $imageFileType != "3gp" && $imageFileType != "mpeg")
+{
+    echo "File Format Not Suppoted";
+} 
+
+else
+{
+
+$video_path=$_FILES['fileToUpload']['name'];
+
+mysqli_query("insert into video(video_name) values('$video_path')");
+
+move_uploaded_file($_FILES["fileToUpload"]["tmp_name"],$target_file);
+
+echo "<center>uploaded <center>";
+
+}
+
+}
+
+//display all uploaded video
+
+if($disp)
+
+{
+
+$query=mysqli_query("select * from video");
+
+	while($all_video=mysqli_fetch_array($query))
+
+	{
+?>
+	 
+	 <video width="300" height="200" controls>
+	<source src="test_upload/<?php echo $all_video['video_name']; ?>" type="video/mp4">
+	</video> 
+	
+	<?php } } ?>
+	
