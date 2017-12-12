@@ -1,0 +1,124 @@
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+========================================
+
+-- Database: `mydb`
+CREATE DATABASE 'mydb';
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loadmore`
+--
+
+CREATE TABLE `loadmore` (
+  `id` int(11) NOT NULL,
+  `feed` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loadmore`
+--
+
+-- --------------------------------------------------------
+Table structure for table `tbl_images`
+--
+
+CREATE TABLE `tbl_images` (
+  `id` int(11) NOT NULL,
+  `name` longblob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+===============================================
+Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(8) NOT NULL,
+  `name` varchar(30) NOT NULL,
+  `email` varchar(60) NOT NULL,
+  `password` varchar(40) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`) VALUES
+(1, 'aman', 'aman@gmail.com', 'e10adc3949ba59abbe56e057f20f883e'),
+(2, 'rami', 'rami@gmail.com', 'e10adc3949ba59abbe56e057f20f883e');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `video`
+--
+
+CREATE TABLE `video` (
+  `v_id` int(11) NOT NULL,
+  `video_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+
+--
+
+-
+--
+
+--
+-- Indexes for table `loadmore`
+--
+ALTER TABLE `loadmore`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_images`
+--
+ALTER TABLE `tbl_images`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `video`
+--
+ALTER TABLE `video`
+  ADD PRIMARY KEY (`v_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `loadmore`
+--
+ALTER TABLE `loadmore`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
+--
+-- AUTO_INCREMENT for table `tbl_images`
+--
+ALTER TABLE `tbl_images`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `video`
+--
+ALTER TABLE `video`
+  MODIFY `v_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+COMMIT;
