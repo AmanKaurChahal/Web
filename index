@@ -1,0 +1,72 @@
+<?php
+session_start();
+include_once 'dbconnect.php';
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>MyWeB</title>
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" >
+	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+    <style>
+        .container-fluid{
+            background-color:aliceblue;
+            
+            
+        }
+        body,html{
+            background-image: url(icons/home.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100%;
+            
+        }
+        .plainText{
+            
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin-top: -100px;
+            margin-left: -200px;
+            text-transform: capitalize;
+        }
+        
+        
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+            <a class="navbar-brand" href="index.php">MyWeB</a>
+        </div>
+		<div class="collapse navbar-collapse" id="navbar1">
+			<ul class="nav navbar-nav navbar-right">
+				<?php if (isset($_SESSION['usr_id'])) { ?>
+				<li><p class="navbar-text">Signed in as <?php echo $_SESSION['usr_name']; ?></p></li>
+				<li><a href="logout.php">Log Out</a></li>
+                <li><a href="options.php">Option</a></li>
+				<?php } else { ?>
+				<li><a href="login.php">Login</a></li>
+				<li><a href="register.php">Sign Up</a></li>
+				<?php } ?>
+			</ul>
+		</div>
+	</div>
+    </nav>
+    <div class="plainText">
+     <center>  <h2><p class="w3-xxlarge w3-serif"><i>"Make it as simple as possible, but not simpler."</i></p></h2></center> 
+       <center>  <p class="w3-xxlarge w3-serif"><b>******************************************Heartly Welcome to Our Website*************************************</b></p></center> 
+    
+  </div>
+<script src="js/jquery-1.10.2.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
+
